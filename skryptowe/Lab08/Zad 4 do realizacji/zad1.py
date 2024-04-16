@@ -24,7 +24,7 @@ class Result:
     tosses:int
     
     def display(self):
-        v = f"{self.position};{self.player};{self.date.strftime("%Y-%m-%d %H:%M:%S")};{self.message};{self.tosses}; rzutach."
+        v = f"{self.position};{self.player};{self.date.strftime('%Y-%m-%d %H:%M:%S')};{self.message};{self.tosses}; rzutach."
         print(v)
         return v
 
