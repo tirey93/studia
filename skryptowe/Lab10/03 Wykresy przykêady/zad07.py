@@ -1,5 +1,6 @@
 # Wykresy pudełkowe (boxplot)
-# Utwórz trzy boxploty, reprezentujące rozkłady trzech różnych zestawów danych losowych o 10 próbek. Dodaj etykiety osi, tytuł i legendę.
+# Utwórz trzy boxploty, reprezentujące rozkłady trzech różnych zestawów danych losowych o 10 próbek. 
+# Dodaj etykiety osi, tytuł i legendę.
 
 import matplotlib.pyplot as plt
 import numpy as np

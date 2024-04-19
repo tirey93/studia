@@ -13,5 +13,6 @@ with open('dane.dat', 'wb') as f:
 
 with open('dane.dat', 'rb') as f:
     res = pickle.load(f) 
+    print(res)
     g, count = np.unique(res, return_counts=1)
     print(count[np.argmax(count)])
