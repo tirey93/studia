@@ -2,21 +2,80 @@
 # Należy wyświetlić wszystkich zawodnikaów z drużyny 'OAK'
 # Którzy zawodnicy zdobyli największą ilość punktów (pole - run)?
 # Którzy zawodnicy zdobyli największą ilość punktów średnio w jednym meczu (run/games)?
+from zad01 import trim_line
 
-#1.  firstname, lastname, age: Informacje personalne o zawodniku, takie jak imię, nazwisko i wiek.
-#2.  team: Zespół, do którego zawodnik należy.
-#3.  games: Liczba rozegranych przez zawodnika meczów.
-#4.  at_bats: Ilość podejść do odbicia, czyli sytuacje, gdy zawodnik próbuje odbić piłkę.
-#5.  runs: Ilość zdobytych punktów przez zawodnika po przebiegnięciu bazy.
-#6.  hits: Ilość trafionych piłek przez zawodnika.
-#7.  doubles: Ilość podwójnych uderzeń, czyli sytuacje, gdy zawodnik osiągnął drugą bazę po swoim uderzeniu.
-#8.  triples: Ilość potrójnych uderzeń, czyli sytuacje, gdy zawodnik osiągnął trzecią bazę po swoim uderzeniu.
-#9.  homeruns: Ilość home runów, czyli sytuacje, gdy zawodnik uderza piłkę poza granice boiska, zdobywając tym samym punkty.
-#10. RBIs (Runs Batted In): Ilość zdobytych punktów przez współzawodnika po uderzeniu danego zawodnika.
-#11. walks: Ilość wypraszających, czyli sytuacje, gdy zawodnik dostaje darmowy przejście na pierwszą bazę bez uderzania piłki.
-#12. strikeouts: Ilość sytuacji, gdy zawodnik jest wyeliminowany przez rzutnika przeciwnego zespołu.
-#13. bat_ave (batting average): Średnia uderzeń, czyli stosunek liczby trafionych uderzeń do liczby podejść do odbicia.
-#14. on_base_pct (on-base percentage): Procent osiągania bazy, czyli stosunek sumy liczby trafionych uderzeń, wypraszających i błędów przeciwnika do sumy podeść do odbicia, wypraszających i błędów przeciwnika.
-#15. slugging_pct (slugging percentage): Procent zagrywki, czyli stosunek liczby punktów zdobytych dzięki podwójnym, potrójnym i home runom do liczby podeść do odbicia.
-#16. stolen_bases: Ilość skradzionych baz przez zawodnika.
-#17. caught_stealing: Ilość sytuacji, gdy zawodnik został zatrzymany podczas próby skradzenia bazy przez przeciwnika.
+class Baseball:
+    firstname:str
+    lastname:str
+    age:int
+    team:str
+    games:int
+    at_bats:int
+    runs:int
+    hits:int
+    doubles:int
+    triples:int
+    homeruns:int
+    RBIs:int
+    walks:int
+    strikeouts:int
+    bat_ave:float
+    on_base_pct:float
+    slugging_pct:float
+    stolen_bases:int
+    caught_stealing:int
+def from_line(line:str):
+    result = Baseball()
+    splitted = trim_line(line)
+
+    result.firstname = splitted[0].strip()
+    result.lastname = splitted[1].strip()
+    result.age = int(splitted[2])
+    result.team = splitted[3].strip()
+    result.games = int(splitted[4])
+    result.at_bats = int(splitted[5])
+    result.runs = int(splitted[6])
+    result.hits = int(splitted[7])
+    result.doubles = int(splitted[8])
+    result.triples = int(splitted[9])
+    result.homeruns = int(splitted[10])
+    result.RBIs = int(splitted[11])
+    result.walks = int(splitted[12])
+    result.strikeouts = int(splitted[13])
+    result.bat_ave = float(splitted[14])
+    result.on_base_pct = float(splitted[15])
+    result.slugging_pct = float(splitted[16])
+    result.stolen_bases = int(splitted[17])
+    result.caught_stealing = int(splitted[18])
+
+    return result
+    
+with open("baseball.txt","r") as file:
+    max = 0
+    max_players = []
+    avg = 0.0
+    avg_players = []
+
+    next(file)
+    for line in file:
+        baseball = from_line(line)
+        if baseball.team == "OAK":
+            print(f"{baseball.firstname} {baseball.lastname}, {baseball.age} - {baseball.team}")
+        if max < baseball.runs:
+            max = baseball.runs
+            max_players = []
+        if baseball.runs == max:
+            max_players.append(baseball)
+        current_avg = baseball.runs / baseball.games
+        if avg < current_avg and baseball.games > 10:
+            avg = current_avg
+            avg_players = []
+        if current_avg > avg - 0.1 and baseball.games > 10:
+            avg_players.append(baseball)
+
+    print()
+    for player in max_players:
+        print(f"{player.firstname} {player.lastname}, {player.age}, Score: {player.runs} - {player.team}")
+    print()
+    for player in avg_players:
+        print(f"{player.firstname} {player.lastname}, {player.age}, Score: {player.runs}, Avg: {(player.runs / player.games)} - {player.team}")

@@ -33,12 +33,12 @@
 import datetime
 import os
 
-data_input_catalog = r'c:\temp\data_input'
-data_output_catalog = r'c:\temp\data_output'
+data_input_catalog = r'c:\Temp\data_input'
+data_output_catalog = r'c:\Temp\data_output'
 
 today = datetime.date.today()
 today_output_catalog = os.path.join(data_output_catalog, today.strftime("%Y-%m-%d"))
-
+print(today_output_catalog)
 # checking confitions
 
 # input folder must exist

@@ -25,7 +25,7 @@ Drugstore XYZ,Penicilin, 20, pills
 Drugstore ABC,Aspirin,60
 Pharma X,Montelukast,10'''
 
-file_path = r'c:\temp\data_input\orders.csv'
+file_path = r'c:\Temp\data_input\orders.csv'
 
 with open(file_path, "r") as file:
     for line in file:
