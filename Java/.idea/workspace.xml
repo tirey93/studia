@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08af4a23-0912-4b6f-a00c-46beb2c8f353" name="Changes" comment="added tests">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/b_another/Main.java" afterDir="false" />
+    <list default="true" id="08af4a23-0912-4b6f-a00c-46beb2c8f353" name="Changes" comment="rename, add another package">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/PeselChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/DateIsIncorrectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/IncorrectLengthException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/NotEnterException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/NotOnlyNumbersException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/PeselException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/checksum.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/getdate.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/getgender.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/zpo/a_pesel/PeselCheckerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/zpo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/zpo/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/zpo/a_pesel/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/zpo/a_pesel/MainTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +51,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2fTG4oVca9vphlKyHeIbZvGeslw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,7 +62,15 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.org.zpo.a_pesel.Main.executor": "Run",
+    "Application.org.zpo.b_another.Main.executor": "Run",
     "JUnit.MainTest.test1.executor": "Run",
+    "JUnit.MainTest.test2.executor": "Run",
+    "JUnit.PeselCheckerTest.checkSum.executor": "Run",
+    "JUnit.PeselCheckerTest.executor": "Run",
+    "JUnit.PeselCheckerTest.getDate.executor": "Run",
+    "JUnit.PeselCheckerTest.getDateFromCSV.executor": "Run",
+    "JUnit.PeselCheckerTest.getGender (1).executor": "Run",
+    "JUnit.PeselCheckerTest.getGender.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
@@ -67,26 +86,16 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.zpo.a_pesel" />
+      <recent name="org.zpo.b_another" />
       <recent name="org.zpo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MainTest.test2">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.zpo.Main" />
-      <module name="zpo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.zpo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="org.zpo.a_pesel.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.Main" />
       <module name="zpo" />
+      <option name="PROGRAM_PARAMETERS" value="93070508910" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.zpo.a_pesel.*" />
@@ -97,46 +106,84 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="org.zpo.b_another.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.zpo.b_another.Main" />
+    <configuration name="PeselCheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.b_another.*" />
+          <option name="PATTERN" value="org.zpo.a_pesel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="1" value="93070508910" />
+      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PeselCheckerTest.checkSum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.*" />
+          <option name="PATTERN" value="org.zpo.a_pesel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.zpo" />
-      <option name="MAIN_CLASS_NAME" value="org.zpo.MainTest" />
-      <option name="METHOD_NAME" value="test1" />
+      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
+      <option name="METHOD_NAME" value="checkSum(java.lang.String,boolean)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PeselCheckerTest.getDateFromCSV" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.b_another.*" />
+          <option name="PATTERN" value="org.zpo.a_pesel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.zpo.b_another" />
-      <option name="MAIN_CLASS_NAME" value="org.zpo.b_another.MainTest" />
-      <option name="METHOD_NAME" value="test2" />
+      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
+      <option name="METHOD_NAME" value="getDateFromCSV(java.lang.String,java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PeselCheckerTest.getGender" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zpo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
+      <option name="METHOD_NAME" value="getGender(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PeselCheckerTest.getGender" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zpo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
+      <option name="METHOD_NAME" value="getGender(java.lang.String,java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -155,13 +202,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.PeselCheckerTest" />
+      <item itemvalue="JUnit.PeselCheckerTest.checkSum" />
+      <item itemvalue="JUnit.PeselCheckerTest.getDateFromCSV" />
+      <item itemvalue="JUnit.PeselCheckerTest.getGender" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MainTest.test2" />
-        <item itemvalue="Application.org.zpo.a_pesel.Main" />
-        <item itemvalue="Application.org.zpo.b_another.Main" />
-        <item itemvalue="JUnit.MainTest.test1" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.PeselCheckerTest" />
+        <item itemvalue="JUnit.PeselCheckerTest.getGender" />
+        <item itemvalue="JUnit.PeselCheckerTest.checkSum" />
+        <item itemvalue="JUnit.PeselCheckerTest.getDateFromCSV" />
       </list>
     </recent_temporary>
   </component>
@@ -190,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713818166350</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="rename, add another package">
+      <option name="closed" value="true" />
+      <created>1713858275250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713858275250</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,7 +261,8 @@
     </ignored-roots>
     <MESSAGE value="initial java" />
     <MESSAGE value="added tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests" />
+    <MESSAGE value="rename, add another package" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename, add another package" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -208,6 +271,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/zpo/01_pesel/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/zpo/a_pesel/PeselCheckerTest.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/Main.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
