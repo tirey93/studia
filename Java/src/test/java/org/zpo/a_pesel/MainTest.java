@@ -1,4 +1,4 @@
-package org.zpo;
+package org.zpo.a_pesel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
