@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08af4a23-0912-4b6f-a00c-46beb2c8f353" name="Changes" comment="rename, add another package">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/PeselChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/DateIsIncorrectException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/IncorrectLengthException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/NotEnterException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/NotOnlyNumbersException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/exceptions/PeselException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/checksum.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/getdate.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/getgender.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/zpo/a_pesel/PeselCheckerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zpo/a_pesel/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/zpo/a_pesel/MainTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="08af4a23-0912-4b6f-a00c-46beb2c8f353" name="Changes" comment="finished pesel checker" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -252,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713858275250</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="finished pesel checker">
+      <option name="closed" value="true" />
+      <created>1713876075619</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713876075619</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -262,7 +256,8 @@
     <MESSAGE value="initial java" />
     <MESSAGE value="added tests" />
     <MESSAGE value="rename, add another package" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename, add another package" />
+    <MESSAGE value="finished pesel checker" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished pesel checker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
