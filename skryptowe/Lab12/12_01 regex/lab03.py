@@ -8,6 +8,6 @@ wynik = re.findall(r'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}', email, re.IGNORECAS
 if wynik:
     print('ok')
     print(wynik)
-    print(wynik.__len__())
+    print(len(wynik))
 else:
     print('No')

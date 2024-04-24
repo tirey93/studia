@@ -20,3 +20,7 @@ else:
 
 # Zdefiniuj funkcję is_valid_postal_code(postal_code)
 # do sprawdzenia poprawności kodu (funkcja zwraca True lub False)
+
+def is_valid_postal_code(postal_code):
+    return False if None == re.fullmatch('[0-9][0-9]-[0-9][0-9][0-9]', postal_code) else True
+print(is_valid_postal_code('45-517'))

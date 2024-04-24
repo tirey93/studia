@@ -6,6 +6,9 @@
 # Dodatkowo definiujemy funkcję aby wpisać całe równanie w postaci - a*x**2+b*x+c
 # oraz oblicznie wartości funkcji w punkcie x.
 
+import math
+
+
 class FunkcjaKwadratowa:
     def __init__(self, a, b, c):  # konstruktor
         self.a = a
@@ -13,14 +16,24 @@ class FunkcjaKwadratowa:
         self.c = c
 
     def show_equation(self):
-        pass  # wpisz całe równanie w postaci - a*x**2+b*x+c
-        print(self.a, self.b, self.c)
+        print(f"{self.a}*x**2 + {self.b}*x + {self.c}")
 
     def calculate_value(self, x):
-        pass  # oblicz wartość funkcji w punkcie x
+        return self.a*x**2+self.b*x+self.c
 
     def resolve(self):
-        return None  # zwróć rozwiązanie w postaci pary dwóch liczb lub komunikatu (lista lub tupla)
+        delta = pow(self.b,2) - 4*self.a*self.c
+        # self.show_equation()
+        # print(f"delta: {delta}")
+        if int(delta) > 0 and self.a != 0:
+            x1 = (-self.b - math.sqrt(delta)) / (2 * self.a)
+            x2 = (-self.b + math.sqrt(delta)) / (2 * self.a)
+            return [x1, x2]
+        elif int(delta) == 0 and self.a != 0:
+            x0 = - self.b / (2*self.a)
+            return [x0, None]
+        else:
+            return [None, None]
 
 
 def main():

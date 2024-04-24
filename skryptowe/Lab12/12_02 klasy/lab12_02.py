@@ -7,8 +7,11 @@ from lab12_01 import Person  # lub skopiować daną klasę z pliku lab12_01.py
 
 
 class Employee(Person):
-    pass
+    age:int = 0
+    def displayEmployee(self):
+        print(self.name)
 
 
 if __name__ == "__main__":
-    input('press any key -- Employee')
+    e = Employee("emp1", 13)
+    e.displayEmployee()

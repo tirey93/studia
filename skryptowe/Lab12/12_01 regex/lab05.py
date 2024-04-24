@@ -5,9 +5,9 @@
 import re
 
 # Sprawdzić działanie programu na każdym z wzorców
-regex = r"(\d{2})-(\d{3})"
-#regex = r"(\d{2}-\d{3})"
-#regex = r"\d{2}-\d{3}"
+# regex = r"(\d{2})-(\d{3})"
+regex = r"(\d{2}-\d{3})"
+# regex = r"\d{2}-\d{3}"
 
 test_str = "65-453 63-334 44-567"
 

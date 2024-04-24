@@ -30,18 +30,26 @@ class Ulamek:
 
     @staticmethod
     def odejmij(u1, u2):
-        pass  # dopisać kod
-        return Ulamek(0, 1)
+        lewy_licznik = u1.licznik * u2.mianownik
+        prawy_licznik = u2.licznik * u1.mianownik
+        wynik = Ulamek(lewy_licznik - prawy_licznik, u1.mianownik * u2.mianownik)
+        wynik.skroc()
+        return wynik
 
     @staticmethod
     def mnoz(u1, u2):
-        pass  # dopisać kod
-        return Ulamek(0, 1)
+        wynik = Ulamek(u1.licznik * u2.licznik, u1.mianownik * u2.mianownik)
+        wynik.skroc()
+        return wynik
 
     @staticmethod
     def dziel(u1, u2):
-        pass  # dopisać kod
-        return Ulamek(0, 1)
+        temp = u2.mianownik
+        u2.mianownik = u2.licznik
+        u2.licznik = temp
+        wynik = Ulamek(u1.licznik * u2.licznik, u1.mianownik * u2.mianownik)
+        wynik.skroc()
+        return wynik
 
 
 def main():
@@ -50,6 +58,7 @@ def main():
     u1.wypisz()
     u2.wypisz()
     u1.skroc()
+    print()
     u1.wypisz()
     u2.skroc()
     u2.wypisz()
