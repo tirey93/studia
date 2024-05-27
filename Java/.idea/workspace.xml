@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08af4a23-0912-4b6f-a00c-46beb2c8f353" name="Changes" comment="finished pesel checker" />
+    <list default="true" id="08af4a23-0912-4b6f-a00c-46beb2c8f353" name="Changes" comment="finished pesel checker">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/b_strumieniowanie/FileAnalyser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zpo/b_strumieniowanie/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/zpo/b_strumieniowanie/FileAnalyserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/zpo/b_another/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/zpo/b_another/MainTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -49,6 +56,11 @@
     "Application.Main.executor": "Run",
     "Application.org.zpo.a_pesel.Main.executor": "Run",
     "Application.org.zpo.b_another.Main.executor": "Run",
+    "Application.org.zpo.b_strumieniowanie.Main.executor": "Run",
+    "JUnit.FileAnalyserTest.executor": "Run",
+    "JUnit.FileAnalyserTest.testCount.executor": "Run",
+    "JUnit.FileAnalyserTest.testCountBeforeFiltering.executor": "Run",
+    "JUnit.FileAnalyserTest.testMisraGries.executor": "Run",
     "JUnit.MainTest.test1.executor": "Run",
     "JUnit.MainTest.test2.executor": "Run",
     "JUnit.PeselCheckerTest.checkSum.executor": "Run",
@@ -72,19 +84,19 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.zpo.b_strumieniowanie" />
       <recent name="org.zpo.a_pesel" />
       <recent name="org.zpo.b_another" />
       <recent name="org.zpo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.Main" />
+  <component name="RunManager" selected="Application.org.zpo.b_strumieniowanie.Main">
+    <configuration name="org.zpo.b_strumieniowanie.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.zpo.b_strumieniowanie.Main" />
       <module name="zpo" />
-      <option name="PROGRAM_PARAMETERS" value="93070508910" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="PATTERN" value="org.zpo.b_strumieniowanie.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -92,68 +104,64 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PeselCheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileAnalyserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="PATTERN" value="org.zpo.b_strumieniowanie.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
-      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="PACKAGE_NAME" value="org.zpo.b_strumieniowanie" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.b_strumieniowanie.FileAnalyserTest" />
       <option name="TEST_OBJECT" value="class" />
-      <envs>
-        <env name="1" value="93070508910" />
-      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PeselCheckerTest.checkSum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileAnalyserTest.testCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="PATTERN" value="org.zpo.b_strumieniowanie.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
-      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
-      <option name="METHOD_NAME" value="checkSum(java.lang.String,boolean)" />
+      <option name="PACKAGE_NAME" value="org.zpo.b_strumieniowanie" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.b_strumieniowanie.FileAnalyserTest" />
+      <option name="METHOD_NAME" value="testCount" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PeselCheckerTest.getDateFromCSV" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileAnalyserTest.testCountBeforeFiltering" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="PATTERN" value="org.zpo.b_strumieniowanie.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
-      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
-      <option name="METHOD_NAME" value="getDateFromCSV(java.lang.String,java.lang.String)" />
+      <option name="PACKAGE_NAME" value="org.zpo.b_strumieniowanie" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.b_strumieniowanie.FileAnalyserTest" />
+      <option name="METHOD_NAME" value="testCountBeforeFiltering" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PeselCheckerTest.getGender" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileAnalyserTest.testMisraGries" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="zpo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zpo.a_pesel.*" />
+          <option name="PATTERN" value="org.zpo.b_strumieniowanie.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.zpo.a_pesel" />
-      <option name="MAIN_CLASS_NAME" value="org.zpo.a_pesel.PeselCheckerTest" />
-      <option name="METHOD_NAME" value="getGender(java.lang.String)" />
+      <option name="PACKAGE_NAME" value="org.zpo.b_strumieniowanie" />
+      <option name="MAIN_CLASS_NAME" value="org.zpo.b_strumieniowanie.FileAnalyserTest" />
+      <option name="METHOD_NAME" value="testMisraGries" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -189,19 +197,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.PeselCheckerTest" />
-      <item itemvalue="JUnit.PeselCheckerTest.checkSum" />
-      <item itemvalue="JUnit.PeselCheckerTest.getDateFromCSV" />
-      <item itemvalue="JUnit.PeselCheckerTest.getGender" />
+      <item itemvalue="Application.org.zpo.b_strumieniowanie.Main" />
+      <item itemvalue="JUnit.FileAnalyserTest" />
+      <item itemvalue="JUnit.FileAnalyserTest.testCount" />
+      <item itemvalue="JUnit.FileAnalyserTest.testCountBeforeFiltering" />
+      <item itemvalue="JUnit.FileAnalyserTest.testMisraGries" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.PeselCheckerTest" />
-        <item itemvalue="JUnit.PeselCheckerTest.getGender" />
-        <item itemvalue="JUnit.PeselCheckerTest.checkSum" />
-        <item itemvalue="JUnit.PeselCheckerTest.getDateFromCSV" />
+        <item itemvalue="Application.org.zpo.b_strumieniowanie.Main" />
+        <item itemvalue="JUnit.FileAnalyserTest.testCount" />
+        <item itemvalue="JUnit.FileAnalyserTest.testCountBeforeFiltering" />
+        <item itemvalue="JUnit.FileAnalyserTest" />
+        <item itemvalue="JUnit.FileAnalyserTest.testMisraGries" />
       </list>
     </recent_temporary>
   </component>
