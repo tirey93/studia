@@ -1,0 +1,7 @@
+EDA - ZADANIE
+
+Korzystając z danych Bikes (Dataset - Bikes.xlsx)
+
+Przeanalizuj dane i powiedz o nich coś ciekawego :)
+
+Mozesz wykorzystać też inne dane portalu kaggle.
