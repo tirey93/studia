@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.zpo.sockets_client.CircleController">
+   <children>
+      <VBox layoutY="9.0">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" text="Serwer">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" onAction="#connect" text="Połącz" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <Slider fx:id="slider" onMouseReleased="#onSliderChanged" value="50.0" />
+            <Pane fx:id="pane" prefHeight="350.0" prefWidth="600.0">
+               <children>
+                  <Circle fx:id="circle" centerX="300.0" centerY="175.0" fill="DODGERBLUE" radius="87.5" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="label" layoutX="8.0" layoutY="328.0" text="Klient nie podłączony" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

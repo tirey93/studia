@@ -8,13 +8,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
-public class HelloController {
+public class CircleController {
     @FXML
     public Slider slider;
     @FXML
     public Circle circle;
     @FXML
     public Pane pane;
+    @FXML
+    public Label label;
 
     private int maxRadius;
 
@@ -24,7 +26,6 @@ public class HelloController {
 
     public void onSliderChanged(MouseEvent mouseEvent) {
         circle.setRadius(maxRadius*slider.getValue()/slider.getMax());
-        System.out.println(slider.getValue());
     }
 
     public void connect(ActionEvent actionEvent) {

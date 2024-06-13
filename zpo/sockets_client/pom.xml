@@ -62,7 +62,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>org.zpo.sockets_client/org.zpo.sockets_client.HelloApplication</mainClass>
+              <mainClass>org.zpo.sockets_client/org.zpo.sockets_client.CircleApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
