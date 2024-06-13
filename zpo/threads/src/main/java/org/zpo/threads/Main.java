@@ -16,29 +16,29 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        run(ReadMode.LINE);
+        run();
     }
 
-    private void run(ReadMode mode) {
+    private void run() {
         String[] filenames = {"plik1.txt", "plik2.txt", "plik3.txt"};
-        int y = 100;
-        int x = 100;
-        int frameWidth = 410;
+        int y = 250;
+        int x = 250;
+        int frameWidth = 350;
 
         CompletableFuture[] futures = new CompletableFuture[NUM_PRODUCERS];
 
         for (int i = 0; i < filenames.length; i++) {
-            FxReaderThread readerThread = new FxReaderThread(filenames[i], buffer, x, y, mode);
+            ReaderThread readerThread = new ReaderThread(filenames[i], buffer, x, y);
             futures[i] = CompletableFuture.runAsync(readerThread::run);
 
             x += frameWidth;
         }
 
-        FxWriterThread consumer = new FxWriterThread("wynik.txt", buffer, 510, 450);
+        WriterThread consumer = new WriterThread("wynik.txt", buffer);
         consumer.start();
 
         CompletableFuture.allOf(futures).thenRun(() -> {
-            consumer.setDone();
+            consumer.setFinish();
 
             try {
                 consumer.join();

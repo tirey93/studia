@@ -2,12 +2,11 @@ package org.zpo.threads;
 
 import java.io.*;
 
-public class FxReaderThread extends FxThread {
-    private ReadMode mode;
+public class ReaderThread extends AbstractThread {
+    private ReadMode mode = ReadMode.LINE;
 
-    public FxReaderThread(String filename, SafeBuffer buffer, double x, double y, ReadMode mode) {
+    public ReaderThread(String filename, SafeBuffer buffer, double x, double y) {
         super(filename, buffer, x, y);
-        this.mode = mode;
     }
 
     @Override
@@ -30,9 +29,7 @@ public class FxReaderThread extends FxThread {
             int ch;
 
             while ((ch = reader.read()) != -1) {
-                buffer.write((char) ch);
-                appendTextToUI((char) ch);
-                this.delay();
+                writeChar((char) ch);
             }
 
         } catch (IOException | InterruptedException e) {
@@ -52,9 +49,7 @@ public class FxReaderThread extends FxThread {
                     buffer.acquireWritingPriority();
 
                     for (char ch : word.toCharArray()) {
-                        buffer.write(ch);
-                        appendTextToUI(ch);
-                        this.delay();
+                        writeChar(ch);
                     }
 
                     buffer.releaseWritingPriority();
@@ -75,9 +70,7 @@ public class FxReaderThread extends FxThread {
                 buffer.acquireWritingPriority();
 
                 for (char ch : line.toCharArray()) {
-                    buffer.write(ch);
-                    appendTextToUI(ch);
-                    this.delay();
+                    writeChar(ch);
                 }
 
                 buffer.releaseWritingPriority();
@@ -86,5 +79,11 @@ public class FxReaderThread extends FxThread {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void writeChar(char ch) throws InterruptedException {
+        buffer.write(ch);
+        appendTextToUI(ch);
+        this.delay();
     }
 }

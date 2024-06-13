@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-public abstract class FxThread extends Thread {
+public abstract class AbstractThread extends Thread {
     protected String filename;
     protected SafeBuffer buffer;
     protected TextArea textArea;
@@ -13,7 +13,7 @@ public abstract class FxThread extends Thread {
     protected double y;
     protected Stage stage;
 
-    protected FxThread(String filename, SafeBuffer buffer, double x, double y) {
+    protected AbstractThread(String filename, SafeBuffer buffer, double x, double y) {
         this.filename = filename;
         this.buffer = buffer;
         this.x = x;
@@ -24,8 +24,7 @@ public abstract class FxThread extends Thread {
     private void createAndShowGUI() {
         stage = new Stage();
         textArea = new TextArea();
-        textArea.setEditable(false);
-        Scene scene = new Scene(textArea, 400, 300);
+        Scene scene = new Scene(textArea, 300, 250);
         stage.setTitle(filename);
         stage.setScene(scene);
         stage.setX(x);
