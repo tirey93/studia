@@ -3,20 +3,14 @@ package org.zpo.threads;
 import java.io.*;
 
 public class ReaderThread extends AbstractThread {
-    private ReadMode mode = ReadMode.LINE;
+    private ReadMode mode = ReadMode.CHARACTER;
 
-    public ReaderThread(String filename, SafeBuffer buffer, double x, double y) {
-        super(filename, buffer, x, y);
+    public ReaderThread(String filename, double x, double y) {
+        super(filename, x, y);
     }
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         switch (mode) {
            case CHARACTER -> characterMode();
            case WORD -> wordMode();
@@ -26,10 +20,10 @@ public class ReaderThread extends AbstractThread {
 
     private void characterMode() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            int ch;
+            int c;
 
-            while ((ch = reader.read()) != -1) {
-                writeChar((char) ch);
+            while ((c = reader.read()) != -1) {
+                writeChar((char) c);
             }
 
         } catch (IOException | InterruptedException e) {
@@ -45,17 +39,15 @@ public class ReaderThread extends AbstractThread {
                 String[] words = line.concat("\n").split(" ");
 
                 for (String word : words) {
+                    Main.semaphore.acquire();
                     word = word.concat(" ");
-                    buffer.acquireWritingPriority();
-
-                    for (char ch : word.toCharArray()) {
-                        writeChar(ch);
+                    for (char c : word.toCharArray()) {
+                        writeChar(c);
                     }
-
-                    buffer.releaseWritingPriority();
+                    Main.semaphore.release();
+                    this.delay();
                 }
             }
-
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -67,13 +59,12 @@ public class ReaderThread extends AbstractThread {
 
             while ((line = reader.readLine()) != null) {
                 line = line.concat("\n");
-                buffer.acquireWritingPriority();
-
-                for (char ch : line.toCharArray()) {
-                    writeChar(ch);
+                Main.semaphore.acquire();
+                for (char c : line.toCharArray()) {
+                    writeChar(c);
                 }
-
-                buffer.releaseWritingPriority();
+                Main.semaphore.release();
+                this.delay();
             }
 
         } catch (IOException | InterruptedException e) {
@@ -81,9 +72,8 @@ public class ReaderThread extends AbstractThread {
         }
     }
 
-    private void writeChar(char ch) throws InterruptedException {
-        buffer.write(ch);
-        appendTextToUI(ch);
-        this.delay();
+    private void writeChar(char c) throws InterruptedException {
+        Main.queue.put(c);
+        appendTextToUI(c);
     }
 }

@@ -7,15 +7,13 @@ import javafx.stage.Stage;
 
 public abstract class AbstractThread extends Thread {
     protected String filename;
-    protected SafeBuffer buffer;
     protected TextArea textArea;
     protected double x;
     protected double y;
     protected Stage stage;
 
-    protected AbstractThread(String filename, SafeBuffer buffer, double x, double y) {
+    protected AbstractThread(String filename,  double x, double y) {
         this.filename = filename;
-        this.buffer = buffer;
         this.x = x;
         this.y = y;
         Platform.runLater(this::createAndShowGUI);
