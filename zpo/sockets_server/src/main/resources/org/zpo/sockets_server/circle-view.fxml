@@ -17,7 +17,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Serwer">
                      <items>
-                        <CheckMenuItem mnemonicParsing="false" onAction="#connect" text="Uruchom" />
+                        <CheckMenuItem fx:id="connect" mnemonicParsing="false" onAction="#connect" text="Uruchom" />
                      </items>
                   </Menu>
                </menus>
