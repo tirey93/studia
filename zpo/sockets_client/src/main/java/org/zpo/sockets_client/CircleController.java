@@ -45,10 +45,8 @@ public class CircleController {
             handleDisconnect();
         }
         else {
-
             handleConnect();
         }
-        isConnectedToServer = !isConnectedToServer;
     }
 
     private void handleDisconnect() {
@@ -58,15 +56,21 @@ public class CircleController {
             throw new RuntimeException(e);
         }
         connect.setText("Połącz");
+        label.setText("Klient nie podłączony");
+        isConnectedToServer = !isConnectedToServer;
+
     }
 
     private void handleConnect() {
         try {
             client.startConnection("127.0.0.1", 6666);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            label.setText("Klient nie podłączony. Serwer nie odpowiada.");
+            return;
         }
 
         connect.setText("Rozłącz");
+        label.setText("Klient podłączony");
+        isConnectedToServer = !isConnectedToServer;
     }
 }

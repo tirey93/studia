@@ -16,7 +16,8 @@ public class Client {
     }
 
     public void sendMessage(String msg) throws IOException {
-        out.println(msg);
+        if(out != null)
+            out.println(msg);
     }
 
     public void stopConnection() throws IOException {

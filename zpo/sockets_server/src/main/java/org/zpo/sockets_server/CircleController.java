@@ -1,5 +1,6 @@
 package org.zpo.sockets_server;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
@@ -35,7 +36,6 @@ public class CircleController {
 
             handleConnect();
         }
-        isConnected = !isConnected;
     }
 
     private void handleDisconnect() {
@@ -45,6 +45,8 @@ public class CircleController {
             throw new RuntimeException(e);
         }
         connect.setText("Uruchom");
+        label.setText("Serwer nie działa.");
+        isConnected = !isConnected;
     }
 
     private void handleConnect() {
@@ -56,5 +58,7 @@ public class CircleController {
             throw new RuntimeException(e);
         }
         connect.setText("Wyłącz");
+        label.setText("Serwer działa.");
+        isConnected = !isConnected;
     }
 }

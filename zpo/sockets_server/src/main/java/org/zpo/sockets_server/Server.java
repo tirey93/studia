@@ -1,5 +1,6 @@
 package org.zpo.sockets_server;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 
@@ -25,27 +26,38 @@ public class Server implements  Runnable {
 
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
 
     public void stop() throws IOException {
-        in.close();
-        clientSocket.close();
+        if(clientSocket != null)
+            clientSocket.close();
+        if(in != null)
+            in.close();
         serverSocket.close();
     }
 
     @Override
     public void run() {
-        String received;
         while (true){
             try {
-                received = in.readLine();
-                System.out.println(received);
-                double r = Double.parseDouble(received);
-                circle.setRadius(r*multiplier);
+                clientSocket = serverSocket.accept();
+                Platform.runLater(() -> label.setText("Serwer działa. Klient podłączony."));
+                String received;
+                while (true){
+                    InputStream inputStream = clientSocket.getInputStream();
+                    in = new BufferedReader(new InputStreamReader(inputStream));
+                    received = in.readLine();
+                    if(received == null) {
+                        Platform.runLater(() -> label.setText("Serwer działa."));
+                        break;
+                    }
+
+                    System.out.println(received);
+                    double r = Double.parseDouble(received);
+                    circle.setRadius(r*multiplier);
+                }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                break;
             }
         }
     }
