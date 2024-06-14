@@ -22,10 +22,10 @@ public class CircleController {
 
     private boolean isConnected;
     Server server;
-    Receiver receiver;
 
     public void initialize() {
-        server = new Server();
+        var multiplier = pane.getPrefHeight() / 2 / 100;
+        server = new Server(circle, label, multiplier);
     }
     public void connect(ActionEvent actionEvent) {
         if (isConnected) {
@@ -50,8 +50,7 @@ public class CircleController {
     private void handleConnect() {
         try {
             server.start(6666);
-            receiver = new Receiver(server, circle);
-            Thread t = new Thread(receiver);
+            Thread t = new Thread(server);
             t.start();
         } catch (IOException e) {
             throw new RuntimeException(e);
