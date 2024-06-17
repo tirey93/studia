@@ -3,9 +3,6 @@ import numpy as np
 from pyzbar.pyzbar import decode
 from config import *
 
-class BoxNotFoundException(Exception):
-    pass
-
 class Box:
     def __init__(self, x, y, w, h):
         self.x = x
@@ -57,7 +54,9 @@ def render_box_info(frame, box):
         cv2.putText(frame, f'No QR code', (x, y - 5), 0, FONT_SCALE, RED_COLOR)
     
     return frame
-
+def add_limits_to_frame(frame):
+    cv2.line(frame, (0, ENTRY_BUFFER_HEIGHT), (500, ENTRY_BUFFER_HEIGHT), RED_COLOR)
+    cv2.line(frame, (0, ADDING_BOXES_LIMIT_Y), (500, ADDING_BOXES_LIMIT_Y), RED_COLOR)
 def decode_qr_data(qr_data):
     size_id = qr_data[:1]
     box_id = qr_data[1:]
@@ -79,11 +78,13 @@ def decode_qr_code(frame):
     
     return None
 
-def box_exists(boxes, x, y, tolerance=100):
+def try_find_box(boxes, x, y, tolerance=100):
+    found_box:Box = None
     for box in boxes:
         if abs(box.x - x) <= tolerance and abs(box.y - y) <= tolerance and box.shouldBeDisplayed:
-            return box
-    raise BoxNotFoundException("Box does not exist.")
+            found_box = box
+            return True, found_box
+    return False, found_box
 
 def add_info_panel(frame, boxes):
     info_bar = np.zeros((FRAME_HEIGHT, FRAME_WIDTH + INFO_PANEL_WIDTH, 3), dtype=np.uint8)
@@ -95,6 +96,7 @@ def add_info_panel(frame, boxes):
     medium_count = 0
     large_count = 0
     invalid_count = 0
+    unread_qrs = 0
 
     for box in boxes:
         if box.size == "Small":
@@ -105,6 +107,9 @@ def add_info_panel(frame, boxes):
             large_count += 1
         elif box.isInvalid == True:
             invalid_count += 1
+        elif box.qrFound == False:
+            unread_qrs += 1
+        
 
     text_color = WHITE_COLOR
 
@@ -129,6 +134,9 @@ def add_info_panel(frame, boxes):
         text_color = DARK_RED_COLOR
 
     cv2.putText(info_bar, f'Number of invalid boxes: {invalid_count}', (FRAME_WIDTH + 10, y_position),
+        cv2.FONT_HERSHEY_SIMPLEX, INFO_PANEL_FONT_SCALE, text_color, 2)
+    y_position += 30
+    cv2.putText(info_bar, f'Number of unread qrs: {unread_qrs}', (FRAME_WIDTH + 10, y_position),
         cv2.FONT_HERSHEY_SIMPLEX, INFO_PANEL_FONT_SCALE, text_color, 2)
 
     return info_bar

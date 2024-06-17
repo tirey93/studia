@@ -31,21 +31,20 @@ while True:
         if y <= ENTRY_BUFFER_HEIGHT:
             continue
 
-        try:
-            existing_box = box_exists(boxes, x, y)
-            existing_box.update_position(x, y)
-            if not existing_box.qrFound:
-                box_subframe = belt[y:y+h, x:x+w]
-                qr = decode_qr_code(box_subframe)
-                if qr:
-                    box_size, box_id = decode_qr_data(qr.data.decode('utf-8'))
-                    existing_box.update_qr_data(size=box_size, id=box_id)
-        except BoxNotFoundException:
+        found,existing_box = try_find_box(boxes, x, y)
+        if not found:
             if y >= ADDING_BOXES_LIMIT_Y:
                 continue
             # Add new box
-            box = Box(x, y, w, h)
-            boxes.append(box)
+            existing_box = Box(x, y, w, h)
+            boxes.append(existing_box)
+        existing_box.update_position(x, y)
+        box_subframe = belt[y:y+h, x:x+w]
+        qr = decode_qr_code(box_subframe)
+        if qr:
+            box_size, box_id = decode_qr_data(qr.data.decode('utf-8'))
+            existing_box.update_qr_data(size=box_size, id=box_id)
+        
 
     result_frame = belt
     # Iterate through all the boxes and process them
@@ -60,11 +59,11 @@ while True:
 
         if box.shouldBeDisplayed:
             result_frame = render_box_info(result_frame, box)
-
+        add_limits_to_frame(result_frame)
     result_frame = add_info_panel(result_frame, boxes)
 
     cv2.imshow("result", result_frame)
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(0)
     if key == 27: # ESC KEY
         break
     elif key == ord('r'):  # R KEY
