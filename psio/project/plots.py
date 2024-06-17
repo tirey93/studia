@@ -4,6 +4,8 @@ from matplotlib import cm
 
 df = pd.read_csv("scores.csv") 
 
+print(df.head(10))
+
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
 
