@@ -62,14 +62,14 @@ def main(starting_frame, th_min, th_max, blur):
                 result_frame = render_box_info(result_frame, box)
             add_limits_to_frame(result_frame)
         result_frame, stats = add_info_panel(result_frame, boxes)
-        # cv2.imshow("result", result_frame)
-        # key = cv2.waitKey(1)
-        return stats
+        cv2.imshow("result", result_frame)
+        key = cv2.waitKey(1)
+        # return stats # uncomment to calc the stats
         if key == 27: # ESC KEY
             break
         elif key == ord('r'):  # R KEYs
             # Debug purpose
-            # Reset the video to the starting frame
+            # Reset the video to the starting framer
             # for box in boxes:
             cap.set(cv2.CAP_PROP_POS_FRAMES, STARTING_FRAME)
             boxes.clear()
