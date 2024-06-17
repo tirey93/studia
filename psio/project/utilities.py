@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from pyzbar.pyzbar import decode
 from config import *
+import math
 
 class Box:
     def __init__(self, x, y, w, h):
@@ -28,13 +29,36 @@ class Box:
     def get_bounding_rect(self):
         return self.x, self.y, self.w, self.h
 
+class Stats:
+    small_count = 0
+    medium_count = 0
+    large_count = 0
+    unread_qrs = 0
+    def __init__(self, small, medium, large, unread_qrs) -> None:
+        self.small_count = small
+        self.medium_count = medium
+        self.large_count = large
+        self.unread_qrs = unread_qrs
+    def __str__(self) -> str:
+        return f"{self.small_count}, {self.medium_count}, {self.large_count}, {self.unread_qrs}"
+    def to_csv(self, starting_frame, th_min, th_max, blur) -> str:
+        return f"{starting_frame}, {th_min}, {th_max}, {blur}, {self.small_count}, {self.medium_count}, {self.large_count}, {self.unread_qrs}\n"
+    def calculate_rmse(self, another):
+        mse = (
+            (self.small_count - another.small_count) ** 2 +
+            (self.medium_count - another.medium_count) ** 2 +
+            (self.large_count - another.large_count) ** 2 +
+            (self.unread_qrs - another.unread_qrs) ** 2
+        ) / 4
 
-def prepare_frame(frame):
+        rmse = math.sqrt(mse)
+        return rmse
+def prepare_frame(frame, th_min, th_max, blur):
     frame_resized = cv2.resize(frame, (FRAME_WIDTH, FRAME_HEIGHT))
     belt = frame_resized
     gray_belt = cv2.cvtColor(belt, cv2.COLOR_BGR2GRAY)
-    blurred_belt = cv2.GaussianBlur(gray_belt, (17, 17), 0)
-    _, thresh_belt = cv2.threshold(blurred_belt, FRAME_THRESHOLD_MIN, FRAME_THRESHOLD_MAX, cv2.THRESH_BINARY)
+    blurred_belt = cv2.GaussianBlur(gray_belt, (blur, blur), 0)
+    _, thresh_belt = cv2.threshold(blurred_belt, th_min, th_max, cv2.THRESH_BINARY)
     kernel = np.ones((15, 15), np.uint8)
     cleaned_frame = cv2.morphologyEx(thresh_belt, cv2.MORPH_OPEN, kernel)
     return cleaned_frame, belt
@@ -139,4 +163,5 @@ def add_info_panel(frame, boxes):
     cv2.putText(info_bar, f'Number of unread qrs: {unread_qrs}', (FRAME_WIDTH + 10, y_position),
         cv2.FONT_HERSHEY_SIMPLEX, INFO_PANEL_FONT_SCALE, text_color, 2)
 
-    return info_bar
+    stats = Stats(small_count, medium_count, large_count, unread_qrs)
+    return info_bar, stats
