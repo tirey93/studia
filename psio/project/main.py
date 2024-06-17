@@ -1,9 +1,14 @@
 import cv2
 from utilities import *
 from config import *
+import sys
 
 device = FILENAME
 cap = cv2.VideoCapture(device)
+
+if not cap.isOpened():
+    print("Error: Could not open video file.")
+    sys.exit()
 
 cap.set(cv2.CAP_PROP_POS_FRAMES, STARTING_FRAME)
 total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -65,6 +70,7 @@ while True:
     elif key == ord('r'):  # R KEY
         # Debug purpose
         # Reset the video to the starting frame
+        # for box in boxes:
         cap.set(cv2.CAP_PROP_POS_FRAMES, STARTING_FRAME)
         boxes.clear()
         continue

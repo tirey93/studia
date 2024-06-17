@@ -1,6 +1,6 @@
 # Video data
 FILENAME = "sample_1_1.mp4"
-STARTING_FRAME = 0
+STARTING_FRAME = 100
 
 # Frame dimensions
 FRAME_WIDTH = 480

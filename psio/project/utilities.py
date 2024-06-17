@@ -38,10 +38,8 @@ def prepare_frame(frame):
     gray_belt = cv2.cvtColor(belt, cv2.COLOR_BGR2GRAY)
     blurred_belt = cv2.GaussianBlur(gray_belt, (17, 17), 0)
     _, thresh_belt = cv2.threshold(blurred_belt, FRAME_THRESHOLD_MIN, FRAME_THRESHOLD_MAX, cv2.THRESH_BINARY)
-
     kernel = np.ones((15, 15), np.uint8)
     cleaned_frame = cv2.morphologyEx(thresh_belt, cv2.MORPH_OPEN, kernel)
-
     return cleaned_frame, belt
 
 def render_box_info(frame, box):
@@ -49,8 +47,9 @@ def render_box_info(frame, box):
 
     if box.qrFound:
         cv2.rectangle(frame, (x, y), (x + w, y + h), GREEN_COLOR, 2)
-        cv2.putText(frame, f'size: {box.size}', (x, y - 22), 0, FONT_SCALE, GREEN_COLOR)
-        cv2.putText(frame, f'id: {box.id}', (x, y - 5), 0, FONT_SCALE, GREEN_COLOR)
+        cv2.putText(frame, f'size: {box.size}', (x, y - 39), 0, FONT_SCALE, GREEN_COLOR)
+        cv2.putText(frame, f'id: {box.id}', (x, y - 22), 0, FONT_SCALE, GREEN_COLOR)
+        cv2.putText(frame, f'area: {box.w * box.h / 100} cm2', (x, y - 5), 0, FONT_SCALE, GREEN_COLOR)
     
     elif box.isInvalid:
         cv2.rectangle(frame, (x, y), (x + w, y + h), RED_COLOR, 2)
@@ -73,7 +72,6 @@ def decode_qr_data(qr_data):
 def decode_qr_code(frame):
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     _, thresh_frame = cv2.threshold(gray_frame, QR_THRESHOLD_MIN, QR_THRESHOLD_MAX, cv2.THRESH_BINARY)
-
     decoded_qr_codes = decode(thresh_frame)
 
     if decoded_qr_codes:
