@@ -27,7 +27,9 @@ def drawLine(x1, x2, fullRange):
     b = x2
 
     # Zakres wartości x (lista) - np od -10 do 10
-    x_list = [fullRange[0] + i * 0.1 for i in range((fullRange[1] - fullRange[0])*10)]
+    startRange = fullRange[0] - 5
+    endRange = fullRange[1] + 5
+    x_list = [startRange + i * 0.1 for i in range((endRange - startRange)*10)]
     # Obliczenie wartości y (lista)
     y_list = [a * x + b for x in x_list]
 

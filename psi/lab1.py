@@ -10,7 +10,6 @@ def split_list(a_list):
 print()
 print()
 
-eta = 0.01 #wspolczynnik uczenia w drugim zadaniu
 x = np.array([
     [-8, 20],
     [-9, 10],
@@ -23,12 +22,15 @@ x = np.array([
     [5, 9],
     [1, -10],
     [4, -16],
+
 ])
 t = np.array([
-    1, 1, 1, 1, 1,  0, 0, 0, 0, 0
+    1, 
+    1, 1, 1, 1,  0, 0, 0, 0, 
+    0
 ])
-w = np.random.uniform(low=0.0, high=0.5, size=(2))
-b = random.uniform(0.0, 0.5)
+w = np.random.uniform(low=-0.25, high=0.25, size=(2))
+b = random.uniform(-0.25, 0.25)
 
 print("----WEKTORY WEJSCIOWE-------------")
 print(f"x={x}")
@@ -39,17 +41,17 @@ print(f"b={b}")
 print("-----------------------")
 
 
-learning = True
 points_learnt = False
 epochs = 1
 
-while(learning):
-    i = 0
+while(True):
     if points_learnt:
-        learning = False
+        break
 
     points_learnt = True
-    for xi in x:
+    # if True:
+        # xi = x[0]
+    for i, xi in enumerate(x):
         yi = perceptron.output(w, xi, b)
         ei = t[i] - yi
 
@@ -67,10 +69,12 @@ print(f"w: {w}, b: {b}")
 x1 = -b/w[0]
 x2 = -b/w[1]
 
+print(x1)
+print(x2)
 upper, lower = split_list(x)
 plot.drawPoints(upper, "red")
 plot.drawPoints(lower, "blue")
-plot.drawLine(5, 8, [min(x[:,0]), max(x[:,0])])
+plot.drawLine(x1, x2, [min(x[:,0]), max(x[:,0])])
 plot.show()
 
 
