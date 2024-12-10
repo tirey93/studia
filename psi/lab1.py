@@ -79,12 +79,15 @@ plot.show()
 
 
 
-
-
-
-
-
-
+print("---------DETERMINING POINTS---------")
+p1 = np.array([-10, -10])
+p2 = np.array([-3, 15])
+p3 = np.array([15, -25])
+p4 = np.array([3, 0])
+print(f"{p1}, expected: 1, result: {perceptron.output(w, np.array(p1), b)}")
+print(f"{p2}, expected: 1,result: {perceptron.output(w, np.array(p2), b)}")
+print(f"{p3}, expected: 0,result: {perceptron.output(w, np.array(p3), b)}")
+print(f"{p4}, expected: 0,result: {perceptron.output(w, np.array(p4), b)}")
 
 
 
