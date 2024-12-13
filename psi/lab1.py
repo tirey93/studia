@@ -3,10 +3,6 @@ import perceptron
 import numpy as np
 import plot
 
-def split_list(a_list):
-    half = len(a_list)//2
-    return a_list[:half], a_list[half:]
-
 print()
 print()
 
@@ -71,7 +67,7 @@ x2 = -b/w[1]
 
 print(x1)
 print(x2)
-upper, lower = split_list(x)
+upper, lower = plot.split_list(x)
 plot.drawPoints(upper, "red")
 plot.drawPoints(lower, "blue")
 plot.drawLine(x1, x2, [min(x[:,0]), max(x[:,0])])
