@@ -12,3 +12,6 @@ def heavisade(x:float):
         return 1
     else:
         return 0
+    
+def mean_squared_error(y_true, y_predicted):
+    return np.mean((y_predicted - y_true) ** 2)

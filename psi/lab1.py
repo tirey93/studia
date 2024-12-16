@@ -3,10 +3,6 @@ import perceptron
 import numpy as np
 import plot
 
-def split_list(a_list):
-    half = len(a_list)//2
-    return a_list[:half], a_list[half:]
-
 print()
 print()
 
@@ -71,7 +67,7 @@ x2 = -b/w[1]
 
 print(x1)
 print(x2)
-upper, lower = split_list(x)
+upper, lower = plot.split_list(x)
 plot.drawPoints(upper, "red")
 plot.drawPoints(lower, "blue")
 plot.drawLine(x1, x2, [min(x[:,0]), max(x[:,0])])
@@ -79,12 +75,15 @@ plot.show()
 
 
 
-
-
-
-
-
-
+print("---------DETERMINING POINTS---------")
+p1 = np.array([-10, -10])
+p2 = np.array([-3, 15])
+p3 = np.array([15, -25])
+p4 = np.array([3, 0])
+print(f"{p1}, expected: 1, result: {perceptron.output(w, np.array(p1), b)}")
+print(f"{p2}, expected: 1,result: {perceptron.output(w, np.array(p2), b)}")
+print(f"{p3}, expected: 0,result: {perceptron.output(w, np.array(p3), b)}")
+print(f"{p4}, expected: 0,result: {perceptron.output(w, np.array(p4), b)}")
 
 
 
