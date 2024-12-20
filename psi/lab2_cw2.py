@@ -41,6 +41,6 @@ for train_method in train_methods:
     results[train_method] = {}
     print(f"Metoda treningu: {train_method}")
     for neurons in hidden_neuron_counts:
-        mse, last_error = train_and_test_network(train_method, neurons)
+        mse, last_error = train_and_test_network(train_method, neurons, num_samples=130)
         results[train_method][neurons] = {"mse": mse, "last_error": last_error}
         print(f"  Liczba neuronów: {neurons}, MSE: {mse:.4f}, Ostatni błąd: {last_error:.4f}")
