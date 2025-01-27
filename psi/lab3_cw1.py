@@ -1,32 +1,30 @@
 
 import random
-from genetic import calculate_indicator, crossover, generate_initial_population, calculate_function, calculate_sum, mutate, select_best_chromosome, select_parent
+
+from matplotlib import pyplot as plt
+from genetic import calculate_function_real, calculate_indicator, crossover, generate_initial_population, calculate_function, calculate_sum, mutate, select_best_chromosome, select_parent
 
 # Parametry populacji
 population_size = 200
-chromosome_length = 8
-crossover_probability = 0.5
-mutation_probability = 0.06
+mutation_probability = 0.5
 max_generations = 200
+chromosome_length = 22
 
-# Generowanie populacji początkowej
-initial_population = generate_initial_population(population_size, chromosome_length)
-
-def make_one_generation(population, crossover_probability, mutation_probability):
+def make_one_generation(population, crossover_probability, mutation_probability, chromosome_length):
     # Wyświetlenie populacji
     # print("Populacja początkowa:")
     # print(initial_population)
 
-    sum = calculate_sum(initial_population)
+    sum = calculate_sum(population)
     indicators = []
-    for chromosome in initial_population:
-        chromosome_value = calculate_function(chromosome)
+    for chromosome in population:
+        chromosome_value = calculate_function_real(chromosome)
         indicator = calculate_indicator(chromosome_value, sum   )
         indicators.append(indicator)
 
     parents = []
-    for _ in range(len(initial_population)):
-        parent = select_parent(initial_population, indicators)
+    for _ in range(len(population)):
+        parent = select_parent(population, indicators)
         parents.append(parent)
 
 
@@ -42,7 +40,7 @@ def make_one_generation(population, crossover_probability, mutation_probability)
     childs = []
     for pair in pairs:
         if random.random() < crossover_probability:
-            crossover_point = random.randint(1, chromosome_length - 1)
+            crossover_point = random.randint(1, chromosome_length - 1) #bierzemy tylko geny w środku, nieskrajne
             child1, child2 = crossover(pair[0], pair[1], crossover_point)
             childs.append(child1)
             childs.append(child2)
@@ -56,16 +54,39 @@ def make_one_generation(population, crossover_probability, mutation_probability)
         childs[mutatated_child] = mutate(childs[mutatated_child])
     return childs
 
-generation_number = 1
-population = initial_population
-while generation_number <= max_generations:
-    new_population = make_one_generation(
-        population,
-        crossover_probability, 
-        mutation_probability)
-    population = new_population
-    generation_number += 1
+def genetic_algorithm(population_size, crossover_probability, mutation_probability):
+    initial_population = generate_initial_population(population_size)
+    generation_number = 1
+    best_fitness_history = []
+    population = initial_population
+    while generation_number <= max_generations:
+        new_population = make_one_generation(
+            population,
+            crossover_probability, 
+            mutation_probability,
+            chromosome_length = chromosome_length )
+        population = new_population
+        generation_number += 1
+        best_chromosome = select_best_chromosome(population)
+        best_fitness_history.append(calculate_function_real(best_chromosome))
 
-best_chromosome = select_best_chromosome(population)
-print("Najlepszy chromosom:")
-print(best_chromosome, int(str(best_chromosome), 2))
+    best_chromosome = select_best_chromosome(population)
+    print("Najlepszy chromosom:")
+    print(best_chromosome, int(str(best_chromosome), 2))
+    return best_fitness_history
+
+crossover_probabilities = [0.5, 0.6, 0.7, 0.8, 1]
+
+plt.figure(figsize=(10, 6))
+for crossover_probability in crossover_probabilities:
+    best_fitness_history = genetic_algorithm(
+    population_size, 
+    crossover_probability, 
+    mutation_probability)
+    plt.plot(range(1, max_generations + 1), best_fitness_history, label=f'pk={crossover_probability}')
+plt.xlabel("Liczba pokoleń")
+plt.ylabel("Wartość F.P.")
+plt.title("Funkcja przystosowania, mutacja: "+ str(mutation_probability))
+plt.legend()
+plt.grid(True)
+plt.show()
