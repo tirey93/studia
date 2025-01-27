@@ -69,3 +69,7 @@ def calculate_function_real(chromosome, lower_bound = -1, upper_bound = 2):
     if x < 0:
        return 0
     return 0.2 * math.sqrt(x) + 2 * math.sin(2 * math.pi * 0.02 * x) + 5
+
+def canFunction_real(chromosome, lower_bound = 0, upper_bound = 9):
+   h = binary_to_real(chromosome, lower_bound, upper_bound)
+   return math.pi * h * (-1 * h + math.sqrt(h*h + 4)) * (-1 * h + math.sqrt(h*h + 4))
