@@ -45,3 +45,21 @@ def crossover(parent1, parent2, crossover_point):
     child1 = parent1[:crossover_point] + parent2[crossover_point:]
     child2 = parent2[:crossover_point] + parent1[crossover_point:]
     return child1, child2
+
+def mutate(chromosome):
+    """Mutates a chromosome by flipping a random bit."""
+    mutation_point = random.randint(0, len(chromosome) - 1)
+    mutated_chromosome = list(chromosome)
+    mutated_chromosome[mutation_point] = '1' if mutated_chromosome[mutation_point] == '0' else '0'
+    return "".join(mutated_chromosome)
+
+def select_best_chromosome(population):
+    """Selects the best chromosome from the population based on its fitness value."""
+    best_chromosome = None
+    best_fitness = float('-inf')  # Inicjalizacja z minimalną wartością float
+    for chromosome in population:
+        fitness = calculate_function(chromosome)
+        if fitness > best_fitness:
+            best_fitness = fitness
+            best_chromosome = chromosome
+    return best_chromosome
